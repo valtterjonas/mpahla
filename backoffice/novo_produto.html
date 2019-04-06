@@ -80,17 +80,19 @@
                         <li class="">
                             <a href="../index.html">Ir a loja</a>
                         </li>
-
-                        <li class="label1 active-menu" data-label1="NEW">
+                        <li class="">
+                            <a href="index.html">Dashboard</a>
+                        </li>
+                        <li class="">
                             <a href="#">Reservas</a>
                         </li>
 
-                        <li>
-                            <a href="about.html">Produtos registados</a>
+                        <li class="active-menu">
+                            <a href="produtos.html">Produtos registados</a>
                         </li>
 
                         <li>
-                            <a href="contact.html">Utilizadores</a>
+                            <a href="utilizadores.html">Utilizadores</a>
                         </li>
                     </ul>
                 </div>
@@ -132,25 +134,22 @@
 </header>
 
 <!-- Shoping Cart -->
-<form class="bg0 p-t-75 p-b-85">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-xl-12 m-lr-auto m-b-50">
                 <div class="m-l-25 m-r--38 m-lr-0-xl">
                     <div class="">
 
-
-                        <form role="form">
+                        <form id="formProduto" name="formProduto" method="POST" action="../php/controller/adicionar/add_produto.php">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Nome</label>
-                                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    <label for="inputNome">Nome</label>
+                                    <input type="text" class="form-control" id="inputNome" data-validation="alphanumeric" placeholder="Nome do Produto">
                                 </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="inputCategoria">Categoria</label>
                                     <select id="inputCategoria" class="form-control">
-                                        <option selected>Choose...</option>
                                         <option>Blusas</option>
                                         <option>Calçados</option>
                                         <option>Vestidos</option>
@@ -159,7 +158,6 @@
                                 <div class="form-group col-md-2">
                                     <label for="inputGenero">Gênero</label>
                                     <select id="inputGenero" class="form-control">
-                                        <option selected>Choose...</option>
                                         <option>Mulheres</option>
                                         <option>Homens</option>
                                     </select>
@@ -172,7 +170,6 @@
                             <div class="form-group col-md-6">
                                 <label for="inputCor">Cor da peça</label>
                                 <select id="inputCor" class="form-control">
-                                    <option selected>Choose...</option>
                                     <option>Azul</option>
                                     <option>Branco</option>
                                     <option>Vermelho</option>
@@ -181,10 +178,9 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-2">
                                 <label for="inputTamanho">Tamanho</label>
                                 <select id="inputTamanho" class="form-control">
-                                    <option selected>Choose...</option>
                                     <option>S</option>
                                     <option>M</option>
                                     <option>L</option>
@@ -194,8 +190,13 @@
                             </div>
 
                                 <div class="form-group col-md-2">
+                                    <label for="inputQuantidade">Quantidade</label>
+                                    <input type="number" class="form-control" id="inputQuantidade" data-validation="number" value="1">
+                                </div>
+
+                                <div class="form-group col-md-2">
                                     <label for="inputNumero">Número</label>
-                                    <input type="text" class="form-control" id="inputNumero">
+                                    <input type="number" class="form-control" id="inputNumero" data-validation="number">
                                 </div>
                             </div>
 
@@ -207,14 +208,13 @@
                                 <div class="form-group col-md-4">
                                     <label for="inputEstado">Estado</label>
                                     <select id="inputEstado" class="form-control">
-                                        <option selected>Choose...</option>
                                         <option>Disponível</option>
                                         <option>Indisponível</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputPreco">Preço</label>
-                                    <input type="text" class="form-control" id="inputPreco">
+                                    <input type="text" class="form-control" id="inputPreco" data-validation="number" data-validation-allowing="float" data-validation-decimal-separator=",">
                                 </div>
                             </div>
 
@@ -239,7 +239,7 @@
                             </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Adicionar Produto</button>
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Adicionar Produto</button>
                         </form>
 
 
@@ -249,7 +249,7 @@
             </div>
         </div>
     </div>
-</form>
+
 
 
 
@@ -272,14 +272,6 @@
 <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/select2/select2.min.js"></script>
-<script>
-    $(".js-select2").each(function(){
-        $(this).select2({
-            minimumResultsForSearch: 20,
-            dropdownParent: $(this).next('.dropDownSelect2')
-        });
-    })
-</script>
 <!--===============================================================================================-->
 <script src="../vendor/daterangepicker/moment.min.js"></script>
 <script src="../vendor/daterangepicker/daterangepicker.js"></script>
@@ -287,64 +279,36 @@
 <script src="../vendor/slick/slick.min.js"></script>
 <script src="../js/slick-custom.js"></script>
 <!--===============================================================================================-->
-<script src="../vendor/parallax100/parallax100.js"></script>
-<script>
-    $('.parallax100').parallax100();
-</script>
-<!--===============================================================================================-->
-<script src="../vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-<script>
-    $('.gallery-lb').each(function() { // the containers for all your galleries
-        $(this).magnificPopup({
-            delegate: 'a', // the selector for gallery item
-            type: 'image',
-            gallery: {
-                enabled:true
-            },
-            mainClass: 'mfp-fade'
-        });
-    });
-</script>
-<!--===============================================================================================-->
 <script src="../vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 <script src="../vendor/sweetalert/sweetalert.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+
 <script>
-    $('.js-addwish-b2').on('click', function(e){
-        e.preventDefault();
-    });
 
-    $('.js-addwish-b2').each(function(){
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
 
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
-        });
-    });
+    var form = $('#formProduto');
 
-    $('.js-addwish-detail').each(function(){
-        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+    alert(form.attr('action'));
 
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-detail');
-            $(this).off('click');
-        });
-    });
-
-    /*---------------------------------------------*/
-
-    $('.js-addcart-detail').each(function(){
-        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-        $(this).on('click', function(){
-            swal(nameProduct, "is added to cart !", "success");
-        });
+    $.validate({
+        lang: 'pt',
+        form: '#formProduto',
+        onError : function($form) {
+            alert('Validation of form '+$form.attr('id')+' failed!');
+        },
+        onSuccess : function($form) {
+            alert('The form '+$form.attr('id')+' is valid!');
+        },
+        onElementValidate : function(valid, $el, $form, errorMess) {
+            console.log('Input ' +$el.attr('id')+ ' is ' + ( valid ? 'VALID':'NOT VALID') );
+        }
     });
 
 </script>
+
+
 <!--===============================================================================================-->
 <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
